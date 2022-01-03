@@ -1,15 +1,12 @@
 import React from "react";
 
 function RecipeCreate({addRecipe}) {
-
-  // TODO: When the form is submitted, a new recipe should be created, and the form contents cleared.
-  // TODO: Add the required input and textarea form elements.
-  // TODO: Add the required submit and change handlers
   
   function createRecipe(e) {
     e.preventDefault();
     const form = e.target;
-    console.log(form);
+
+    // Construct new recipe object
     const newRecipe = {
       name: form.name.value,
       cuisine: form.cuisine.value,
@@ -17,13 +14,28 @@ function RecipeCreate({addRecipe}) {
       ingredients: form.ingredients.value,
       preparation: form.preparation.value
     }
+
+    // Pass new recipe to addRecipe in App.js to update state
     addRecipe(newRecipe);
+
+    // Clear form fields
     document.getElementById('create').reset();
   }
 
   return (
     <form name="create" id="create" onSubmit={createRecipe}>
       <table>
+      {/* Form fields didn't perfectly line up with main table.
+          Empty thead and attendant th fixes formatting, while
+          CSS hides the thead. */}
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
         <tbody>
           <tr>
             <td><input name="name" required /></td>

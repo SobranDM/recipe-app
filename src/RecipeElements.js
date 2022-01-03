@@ -3,12 +3,16 @@ import React from "react";
 function RecipeElements({recipes, deleteRecipe}) {
     
     function onDelete(e) {
+        // Move up two elements to the recipe row and fetch the recipe index off <tr>
         const doomedRecipe = e.target.parentElement.parentElement.getAttribute('index');
+
+        // Filter for all recipes except the one selected
         const filtered = recipes.filter((recipe, index) =>
         index != doomedRecipe
         );
+
+        // Call App.js deleteRecipe to update state
         deleteRecipe(filtered);
-        console.log(filtered);
     }
 
     return (
